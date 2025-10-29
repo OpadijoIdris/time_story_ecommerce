@@ -19,7 +19,7 @@ const ProductModal = ({ product, onClose }) => {
           <div>
             <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
             <p className="text-gray-600 mb-4">{product.description}</p>
-            <p className="text-2xl font-bold text-blue-600 mb-4">${product.price}</p>
+            <p className="text-2xl font-bold text-blue-600 mb-4">#{product.price}</p>
             <p className="text-sm text-gray-500">Date Added: {new Date(product.createdAt).toLocaleDateString()}</p>
           </div>
         </div>

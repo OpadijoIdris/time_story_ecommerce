@@ -12,6 +12,8 @@ export const loginUser = async (loginData) => {
     if (token && user) {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
+
+        console.log("user saved to local storage", user)
         return userData;
     } else {
         throw new Error("could not save token. Response from server: " + JSON.stringify(userData));
@@ -141,10 +143,35 @@ export const addToCart = async (cartData) => {
         ("internal server error", error.message)
         throw new Error ("could not add to cart")
     }
-}
+};
 
-export const getAllCarts = async ()
+export const getCartById = async (userId) => {
+  try {
+    const token = localStorage.getItem("token");
+    const headers = {};
+    if (token) headers.Authorization = `Bearer ${token}`;
 
+    const response = await axios.get(`${API_BASE}/api/cart/${userId}`, { headers });
+    return response.data;
+  } catch (err) {
+    console.error("Error fetching cart:", err);
+    throw new Error(err.response?.data?.message || "Failed to fetch cart");
+  }
+};
+
+export const clearCart = async (userId) => {
+  try {
+    const token = localStorage.getItem('token');
+    const headers = {};
+    if (token) headers.Authorization = `Bearer ${token}`;
+
+    const response = await axios.delete(`${API_BASE}/api/cart/${userId}`, { headers });
+    return response.data;
+  } catch (err) {
+    console.error('Error clearing cart:', err);
+    throw new Error('Failed to clear cart');
+  }
+};
 
 export const checkout = async (payout) => {
     try{

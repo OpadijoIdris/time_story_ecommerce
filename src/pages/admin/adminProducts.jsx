@@ -78,7 +78,6 @@ export default function Products() {
       };
 
        const product = await createProduct(productData);
-       ("my product", product)
        ("sending product data", productData)
       setShowForm(false);
       setFormData({ name: '', description: '', price: '', stock: '' });

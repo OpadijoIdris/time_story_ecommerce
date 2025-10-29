@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getAllProducts } from "../../../api.js";
 import ProductCard from "./productCard.jsx";
-import CartPopup from "./cart.jsx";
 import ProductModal from "./ProductModal.jsx";
 
 const ProductsPage = () => {
